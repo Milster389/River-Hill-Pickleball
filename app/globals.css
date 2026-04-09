@@ -398,7 +398,7 @@ section { padding: 100px 5%; }
   font-size: 0.8rem; color: var(--white-dim);
   display: flex; align-items: center; gap: 4px;
 }
-.event-location::before { content: '📍'; font-size: 0.7rem; }
+.event-location::before { content: '›'; font-size: 0.8rem; }
 .event-card-body { padding: 1.25rem 1.5rem 1.5rem; }
 .event-desc {
   font-size: 0.85rem; color: var(--white-dim);
@@ -416,6 +416,60 @@ section { padding: 100px 5%; }
   border-color: rgba(245,197,24,0.25);
 }
 .btn-full { width: 100%; justify-content: center; }
+
+/* ── PAST EVENTS ── */
+.past-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.past-event-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid rgba(245,197,24,0.4);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.past-event-row:hover {
+  transform: translateX(4px);
+  box-shadow: -4px 0 16px var(--gold-glow);
+}
+.past-event-date {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 72px;
+  flex-shrink: 0;
+}
+.past-event-info {
+  flex: 1;
+}
+.past-event-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.past-event-desc {
+  font-size: 0.82rem;
+  color: var(--white-dim);
+  line-height: 1.5;
+}
+.past-event-tags {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .past-event-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .past-event-tags { flex-wrap: wrap; }
+}
 
 /* ── SIGN UP FORM ── */
 .signup-section {
@@ -453,6 +507,82 @@ section { padding: 100px 5%; }
   text-align: center; font-size: 0.78rem; color: var(--white-dim); margin-top: 1rem;
 }
 .form-note a { color: var(--gold); }
+
+/* ── CONNECT CARDS ── */
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.connect-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.connect-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.connect-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 0 1px var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+.connect-card-icon {
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.connect-card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.connect-card-handle {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+.connect-card-desc {
+  font-size: 0.88rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+  max-width: 260px;
+  margin-top: 0.25rem;
+}
+.connect-card-btn {
+  margin-top: 1.25rem;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.connect-card:hover .connect-card-btn {
+  background: #ffd740;
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+
+@media (max-width: 600px) {
+  .connect-grid { grid-template-columns: 1fr; }
+}
 
 /* ── GROUPME ── */
 .groupme-section {

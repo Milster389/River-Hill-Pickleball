@@ -37,12 +37,12 @@ export default function Navbar() {
           />
           <div className="nav-logo-text">
             River Hill Pickleball
-            <span>Club · Est. 2024</span>
+            <span>Club · Est. 2023</span>
           </div>
         </a>
 
         <ul className="nav-links">
-          {['home', 'about', 'events', 'groupme', 'gallery', 'contact'].map((id) => (
+          {['home', 'about', 'events', 'contact'].map((id) => (
             <li key={id}>
               <a href={`#${id}`} onClick={(e) => { e.preventDefault(); scrollTo(`#${id}`) }}>
                 {id.charAt(0).toUpperCase() + id.slice(1)}
@@ -50,7 +50,7 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <a href="#events" className="btn-nav" onClick={(e) => { e.preventDefault(); scrollTo('#events') }}>
+            <a href="#events" className="btn-nav" style={{ color: '#0D1B3E' }} onClick={(e) => { e.preventDefault(); scrollTo('#events') }}>
               Join Us
             </a>
           </li>
@@ -66,7 +66,7 @@ export default function Navbar() {
       </nav>
 
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
-        {['home', 'about', 'events', 'groupme', 'gallery', 'contact'].map((id) => (
+        {['home', 'about', 'events', 'contact'].map((id) => (
           <a key={id} href={`#${id}`} onClick={(e) => { e.preventDefault(); scrollTo(`#${id}`) }}>
             {id.charAt(0).toUpperCase() + id.slice(1)}
           </a>

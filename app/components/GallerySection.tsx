@@ -14,18 +14,18 @@ const items: GalleryItem[] = [
   {
     src: '/Front of Pball Jersey.jpg',
     alt: 'River Hill Pickleball Jersey Front',
-    label: 'Official Club Jersey — Front',
+    label: 'Official Club Jersey: Front',
     wide: true,
   },
   {
     src: '/Back of pball jersey 25.jpg',
     alt: 'River Hill Pickleball Jersey Back',
-    label: 'Official Club Jersey — Back',
+    label: 'Official Club Jersey: Back',
   },
   {
     src: '/Logo.jpeg',
     alt: 'Club Logo',
-    label: 'River Hill Pickleball — Official Logo',
+    label: 'River Hill Pickleball Official Logo',
     tall: true,
     contain: true,
   },

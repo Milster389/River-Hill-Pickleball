@@ -1,9 +1,9 @@
 export default function StatsBar() {
   const stats = [
-    { num: '83+', label: 'Active Members' },
-    { num: '#1', label: 'In Howard County' },
-    { num: '2024', label: 'Year Founded' },
-    { num: 'HoCo', label: '1st HS Pickleball Club' },
+    { num: '80+', label: 'Active Members' },
+    { num: '2023', label: 'Year Founded' },
+    { num: 'First', label: 'HS Pickleball Club in HoCo' },
+    { num: 'RHHS', label: 'River Hill High School' },
   ]
 
   return (

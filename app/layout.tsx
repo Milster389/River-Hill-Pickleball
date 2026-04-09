@@ -10,7 +10,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'River Hill Pickleball Club',
-  description: "Howard County's first high school pickleball club — building a competitive community at River Hill High School in Clarksville, MD.",
+  description: "Howard County's first high school pickleball club, building a competitive community at River Hill High School in Clarksville, MD.",
 }
 
 export default function RootLayout({
