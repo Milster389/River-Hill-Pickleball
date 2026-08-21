@@ -4,48 +4,55 @@ import { useEffect } from 'react'
 
 export default function ScrollEffects() {
   useEffect(() => {
-    // Intersection Observer for fade-in on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement
-            el.style.opacity = '1'
-            el.style.transform = 'translateY(0)'
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    document.querySelectorAll<HTMLElement>('.event-card, .about-card, .gallery-item, .stat-item').forEach((el) => {
-      el.style.opacity = '0'
-      el.style.transform = 'translateY(24px)'
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease'
-      observer.observe(el)
-    })
-
-    // Active nav link on scroll
-    const sections = document.querySelectorAll<HTMLElement>('section[id], footer[id]')
-    const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-links a')
-
-    const handleScroll = () => {
-      let current = ''
-      sections.forEach((section) => {
-        if (window.scrollY >= section.offsetTop - 100) {
-          current = section.getAttribute('id') || ''
-        }
-      })
-      navLinks.forEach((link) => {
-        link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--gold)' : ''
+    // Smooth in-page scrolling with a nav-height offset.
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null
+      const a = target?.closest?.('a[href^="#"]') as HTMLAnchorElement | null
+      if (!a) return
+      const id = a.getAttribute('href')
+      if (!id || id === '#') return
+      const el = document.querySelector(id)
+      if (!el) return
+      e.preventDefault()
+      window.scrollTo({
+        top: el.getBoundingClientRect().top + window.scrollY - 84,
+        behavior: reduce ? 'auto' : 'smooth',
       })
     }
+    document.addEventListener('click', onClick)
 
-    window.addEventListener('scroll', handleScroll)
+    // Reveal-on-scroll
+    const targets = Array.from(document.querySelectorAll('.reveal'))
+    let obs: IntersectionObserver | undefined
+    let fallback: number | undefined
+
+    if (reduce || !('IntersectionObserver' in window)) {
+      targets.forEach((el) => el.classList.add('visible'))
+    } else {
+      targets.forEach((el, i) => {
+        ;(el as HTMLElement).style.transitionDelay = `${Math.min(i % 4, 3) * 70}ms`
+      })
+      obs = new IntersectionObserver(
+        (entries, o) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) {
+              en.target.classList.add('visible')
+              o.unobserve(en.target)
+            }
+          })
+        },
+        { threshold: 0.12 },
+      )
+      targets.forEach((el) => obs!.observe(el))
+      fallback = window.setTimeout(() => targets.forEach((el) => el.classList.add('visible')), 1600)
+    }
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('click', onClick)
+      obs?.disconnect()
+      if (fallback) window.clearTimeout(fallback)
     }
   }, [])
 
