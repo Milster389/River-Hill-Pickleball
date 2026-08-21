@@ -17,7 +17,7 @@ export default function HeroSection() {
         <div className="hero-copy">
           <span className="hero-eyebrow">Est. 2023 &middot; River Hill High School</span>
           <h1 className="hero-title">
-            Howard County&rsquo;s <em>first</em>{' '}high&nbsp;school pickleball&nbsp;club
+            Howard County&rsquo;s <em>first</em> high&nbsp;school pickleball&nbsp;club
           </h1>
           <p className="hero-sub">Every student. Every level. Just show up and play.</p>
           <div className="hero-ctas">
